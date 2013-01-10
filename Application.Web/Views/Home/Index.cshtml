@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model Application.Models.ViewModels.ToDoViewModel
+<header class="jumbotron subhead" id="overview">
+    <div class="row">
+        <div class="span6">
+            <h1>To Do</h1>
+            <p class="lead">An example.</p>
+        </div>
+        <div class="span6">
+        </div>
+    </div>
+    <div ng-controller="MessageCtrl" ng-show="showMessage" class="row">
+        <div class="span12">
+            <div class="alert {{AlertType}}">
+                <a ng-click="close();" class="close">×</a> 
+                <strong>{{Title}}</strong> {{Message}}
+            </div>
+        </div>
+    </div>
+    <div ng-view></div>
+</header>

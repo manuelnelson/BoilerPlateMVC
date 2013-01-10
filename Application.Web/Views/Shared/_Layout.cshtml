@@ -1,0 +1,76 @@
+﻿@using Application.Web
+@using ServiceStack.MiniProfiler
+<!DOCTYPE html>
+<html lang="en" ng-app="TodoApp">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Enter Description Here.">
+    <meta name="author" content="Emmanuel Nelson">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/bootstrap.less")"/>
+        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/app-specific.less")"/>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/less.js")"></script>
+    }
+    else
+    {
+        @Html.RenderCssBundle("~/Content/application.css.bundle", BundleOptions.MinifiedAndCombined)
+    }
+    @RenderSection("Styles", required: false)
+</head>
+<body class="preview" data-spy="scroll" data-target=".subnav" data-offset="80">
+    <header>
+        <!-- Navbar
+    ================================================== -->
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="../">Boilerplate</a>
+                    <div class="nav-collapse" id="main-menu">
+                        <ul class="nav" id="main-menu-left">
+                            <li><a href="http://manuelnelson.github.com/BoilerPlateWeb.git">View on Github</a></li>
+                            <li class="dropdown" id="preview-menu">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a target="_blank" href="#">Doesn't</a></li>
+                                    <li><a target="_blank" href="#">Do</a></li>
+                                    <li class="divider"></li>
+                                    <li><a target="_blank" href="#">Anything</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        @RenderBody()
+        <br>
+        <br>
+        <br>
+        <hr>
+        <footer id="footer">
+            <p class="pull-right"><a href="#">Back to top</a></p>
+            Made by <a target="_blank" href="http://emmanuelnelson.com">Emmanuel Nelson</a>. <a href="mailto:info@emmanuelnelson.com">Contact him </a>.<br>
+                                                                                                                                                       Theme modified from <a target="_blank" href="http://bootswatch.com/readable">bootswatch theme</a> from <a href="http://thomaspark.me/" target="_blank">Thomas Park</a><br/>
+                                                                                                                                                       Based on <a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap</a>. Hosted on <a target="_blank" href="http://pages.github.com/">GitHub</a>. Icons from <a target="_blank" href="http://glyphicons.com/">Glyphicons</a>. Web fonts from <a target="_blank" href="http://www.google.com/webfonts">Google</a>.<p></p>
+        </footer>
+    </div>
+    <div ng-controller="LoadingCtrl" id="loading" ng-show="loading"><span>{{message}}</span></div>
+    @Html.Raw(Profiler.RenderIncludes().ToHtmlString())
+    @(HttpContext.Current.IsDebuggingEnabled ? Html.RenderJsBundle("~/Scripts/application.js.bundle", BundleOptions.Normal) : Html.RenderJsBundle("~/Scripts/application.js.bundle", BundleOptions.MinifiedAndCombined))
+    @RenderSection("scripts", required: false)
+</body>
+</html>
