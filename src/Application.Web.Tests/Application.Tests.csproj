@@ -91,7 +91,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BoilerPlateWeb\BoilerPlateWeb.csproj">
+    <ProjectReference Include="..\Application.Web\Application.Web.csproj">
       <Project>{9459CD53-3035-479B-9C23-9C92A34813AA}</Project>
       <Name>BoilerPlateWeb</Name>
     </ProjectReference>

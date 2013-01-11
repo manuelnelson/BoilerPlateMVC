@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Net;
 using Application.BusinessLogic.Contracts;
 using Application.DataInterface;
 using Application.Models.Contract;
 using Elmah;
+using ServiceStack.Common.Web;
 
 namespace Application.BusinessLogic
 {
@@ -28,7 +30,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to add item", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to add item");
             }
         }
 
@@ -41,7 +43,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to add item", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to add items");
             }
         }
 
@@ -54,7 +56,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to retrieve item", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to retrieve item");
             }
         }
 
@@ -67,7 +69,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to retrieve item", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to retrieve items");
             }
         }
 
@@ -80,7 +82,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to update information", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to update item");
             }
         }
 
@@ -93,7 +95,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to remove item", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to remove item");
             }
         }
 
@@ -106,7 +108,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to remove items", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to remove items");
             }
         }
 
@@ -119,7 +121,7 @@ namespace Application.BusinessLogic
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
-                throw new Exception("Unable to remove items", ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to remove items");
             }
         }
 

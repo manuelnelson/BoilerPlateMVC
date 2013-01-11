@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
-using BoilerPlateWeb.Controllers;
+using Application.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BoilerPlateWeb.Tests.Controllers
+namespace Application.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
