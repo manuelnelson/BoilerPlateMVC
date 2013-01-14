@@ -164,7 +164,9 @@
     <Compile Include="RestServices\ToDoRestService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Application.sdf" />
+    <Content Include="App_Data\Application.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="bundler\bundler.js" />
     <Content Include="bundler\node.exe" />
     <Content Include="bundler\node_modules\clean-css\index.js" />
