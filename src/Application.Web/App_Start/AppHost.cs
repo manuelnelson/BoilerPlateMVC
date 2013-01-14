@@ -8,6 +8,7 @@ using Application.DataInterface;
 using Application.Web.App_Start;
 using Application.Web.RestServices;
 using Funq;
+using ServiceStack.Configuration;
 using ServiceStack.Logging;
 using ServiceStack.Logging.Elmah;
 using ServiceStack.Logging.Support.Logging;
@@ -71,15 +72,17 @@ namespace Application.Web.App_Start
 
             //---Entity Framework
             //database
-            container.Register<IUnitOfWork>(c => new DataContext.DataContext());
+//            container.Register<IUnitOfWork>(c => new DataContext.DataContext());
             //repositories
-            container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
-            EfConfigure.Initialize();
+            //container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
+            //EfConfigure.Initialize();
 
-
+            var appSettings = new AppSettings();
+            var connectionString = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
+                ConfigUtils.GetConnectionString("ApplicationDb"));
             //--OrmLite
-/*            //database
-            var connectionString = ConfigurationManager.ConnectionStrings["ApplicationDb"].ConnectionString;
+            //database
+            //var connectionString = ConfigurationManager.ConnectionStrings["ApplicationDb"].ConnectionString;
             container.Register<IDbConnectionFactory>(c =>
                 new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance)
                 {
@@ -88,7 +91,6 @@ namespace Application.Web.App_Start
             //repositories
             container.Register<IToDoRepository>(c => new ToDoOrmLiteRepository(c.Resolve<IDbConnectionFactory>()));
             OrmLiteConfigure.Initialize(container);
-            */
 
             //services
             container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
