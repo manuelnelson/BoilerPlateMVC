@@ -1,18 +1,17 @@
-﻿
-var TodoListCtrl = function ($scope, $location, todoService, loadingService, messageService) {
-    $scope.getTodos = function() {
-        todoService.query({ format: 'json' }, function(todos) {
+﻿var TodoListCtrl = function ($scope, $location, todoService, messageService) {
+    $scope.getTodos = function () {
+        todoService.query({ format: 'json' }, function (todos) {
             $scope.todos = [];
             $scope.todos = $scope.todos.concat(todos);
         });
     };
 
     $scope.addTodo = function () {
-        todoService.save($scope.todo, function(task) {  
+        todoService.save($scope.todo, function (task) {
             $scope.todos.push(task);
-            $scope.todo.Task = '';            
+            $scope.todo.Task = '';
         });
-    };
+    }; 
 
     $scope.archive = function () {
         var deleteTodos = $.grep($scope.todos, function (todo) {
@@ -25,8 +24,8 @@ var TodoListCtrl = function ($scope, $location, todoService, loadingService, mes
         todoService.deleteAll({
             format: 'json',
             Ids: deleteIds
-        }, function() {
-            var keepTodos = $.grep($scope.todos, function(todo) {
+        }, function () {
+            var keepTodos = $.grep($scope.todos, function (todo) {
                 return !todo.Completed;
             });
             $scope.todos = [];
@@ -35,6 +34,10 @@ var TodoListCtrl = function ($scope, $location, todoService, loadingService, mes
     };
     $scope.getTodos();
 };
+//Default service injection doesn't work with minification, so a manual injection is necessary. The one liner injection
+//TodoApp.controller('TodoListCtrl', ['$scope', '$location', 'todoService', 'loadingService', 'messageService', function ($scope, $location, todoService, loadingService, messageService) { ... }]);
+//doesn't seem to work for me as I'd prefer this 
+TodoListCtrl.$inject = ['$scope', '$location', 'todoService', 'messageService'];
 var TodoEditCtrl = function ($scope, $routeParams, $location, todoService) {
     $scope.todo = todoService.get({ Id: $routeParams.todoId });
     
@@ -44,17 +47,18 @@ var TodoEditCtrl = function ($scope, $routeParams, $location, todoService) {
         });
     };
 };
+TodoEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'todoService'];
 
 //Loading contoller
-LoadingApp.controller('LoadingCtrl', function ($scope, loadingService) {
+var LoadingCtrl = function ($scope, loadingService) {
     $scope.message = Application.properties.defaultMessage;
     $scope.$watch(function () { return loadingService.isLoading(); }, function (value) {
         $scope.message = loadingService.message;
         $scope.loading = value;
     });
-});
-
-MessageApp.controller('MessageCtrl', function ($scope, messageService) {    
+};
+LoadingCtrl.$inject = ['$scope', 'loadingService'];
+var MessageCtrl = function ($scope, messageService) {       
     $scope.$watch(function () { return messageService.isShowing(); }, function (value) {
         $scope.Title = messageService.messageOptions.title;
         $scope.AlertType = messageService.messageOptions.alertType;
@@ -62,6 +66,7 @@ MessageApp.controller('MessageCtrl', function ($scope, messageService) {
         $scope.showMessage = value;
     });
     $scope.close = function() {
-        messageService.closeMessage();
+        messageService.closeMessage(); 
     };
-});
+};
+MessageCtrl.$inject = ['$scope', 'messageService'];

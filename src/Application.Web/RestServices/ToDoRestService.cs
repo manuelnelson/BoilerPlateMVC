@@ -53,7 +53,7 @@ namespace Application.Web.RestServices
             public object Post(TodoDto request)
             {
                 var toDoEntity = request.TranslateTo<ToDo>();
-                ToDoService.Add(toDoEntity);
+                ToDoService.Add(toDoEntity); 
                 return toDoEntity;
             }
 
@@ -65,9 +65,8 @@ namespace Application.Web.RestServices
             }
 
             public void Delete(TodoListDto request)
-            { 
-                throw new HttpError(HttpStatusCode.BadRequest, "Dude...you don't belong here");
-                //ToDoService.DeleteAll(request.Ids);
+            {                 
+                ToDoService.DeleteAll(request.Ids);
             }
 
             public void Delete(TodoDto request)
