@@ -50,7 +50,6 @@ local.properties
 *.meta
 *.obj
 *.pch
-*.pdb
 *.pgc
 *.pgd
 *.rsp
