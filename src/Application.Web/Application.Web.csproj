@@ -232,6 +232,8 @@
     <Content Include="bundler\vs2010-extension\extension.vsixmanifest" />
     <Content Include="bundler\vs2010-extension\favicon.ico" />
     <Content Include="bundler\vs2010-extension\ServiceStack-logo.png" />
+    <Content Include="Content\application.css" />
+    <Content Include="Content\application.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\js\ss-validation.js" />
@@ -299,6 +301,8 @@
     <Content Include="Scripts\app-specific\app.js" />
     <Content Include="Scripts\app-specific\app-services.js" />
     <Content Include="Scripts\app-specific\app-controllers.js" />
+    <Content Include="Scripts\application.js" />
+    <Content Include="Scripts\application.min.js" />
     <Content Include="Scripts\bootstrap-affix.js" />
     <Content Include="Scripts\bootstrap-alert.js" />
     <Content Include="Scripts\bootstrap-button.js" />
