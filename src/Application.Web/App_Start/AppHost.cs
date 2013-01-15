@@ -74,29 +74,28 @@ namespace Application.Web.App_Start
 
             //---Entity Framework (Uncomment to use)
             //database
-            //container.Register<IUnitOfWork>(c => new DataContext.DataContext());
+            container.Register<IUnitOfWork>(c => new DataContext.DataContext());
             //repositories
-            //container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
-            //EfConfigure.Initialize();
+            container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
+            EfConfigure.Initialize();
             //services
-            //container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
+            container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
 
             //--OrmLite
-            var appSettings = new AppSettings();
-            var connectionString = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
-                ConfigUtils.GetConnectionString("DataContext"));
+            //var appSettings = new AppSettings();
+            //var connectionString = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
+            //    ConfigUtils.GetConnectionString("DataContext"));
             //database
-            container.Register<IDbConnectionFactory>(c =>
-                new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance)
-                {
-                    ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current)
-                });
+            //container.Register<IDbConnectionFactory>(c =>
+            //    new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance)
+            //    {
+            //        ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current)
+            //    });
             //repositories
-            container.Register<IToDoRepository>(c => new ToDoOrmLiteRepository(c.Resolve<IDbConnectionFactory>()));
-            OrmLiteConfigure.Initialize(container);
-
+            //container.Register<IToDoRepository>(c => new ToDoOrmLiteRepository(c.Resolve<IDbConnectionFactory>()));
+            //OrmLiteConfigure.Initialize(container);
             //services
-            container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoOrmLiteRepository));
+            //container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoOrmLiteRepository));
 
 	    }
 
