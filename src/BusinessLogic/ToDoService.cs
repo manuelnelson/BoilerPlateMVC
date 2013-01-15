@@ -7,10 +7,10 @@ using Elmah;
 
 namespace Application.BusinessLogic
 {
-    public class ToDoService : Service<ToDoRepository, ToDo>, IToDoService
+    public class ToDoService : Service<IToDoRepository, ToDo>, IToDoService
     {
         private IToDoRepository ToDoRepository { get; set; }
-        public ToDoService(ToDoRepository repository) : base(repository)
+        public ToDoService(IToDoRepository repository) : base(repository)
         {
             ToDoRepository = repository;
         }

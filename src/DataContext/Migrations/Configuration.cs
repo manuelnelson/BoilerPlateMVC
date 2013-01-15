@@ -19,11 +19,11 @@ namespace Application.DataContext.Migrations
             //only seed if no data exists
             if (!context.Set<ToDo>().Any())
             {
-                context.Todo.Add(new ToDo
+                context.Todos.Add(new ToDo
                 {
                     Task = "Do the laundry"
                 });
-                context.Todo.Add(new ToDo
+                context.Todos.Add(new ToDo
                 {
                     Task = "Take out the garbage"
                 });

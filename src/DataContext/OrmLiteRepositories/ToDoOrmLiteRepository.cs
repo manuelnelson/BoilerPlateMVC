@@ -26,7 +26,7 @@ namespace Application.DataContext.OrmLiteRepositories
         {
             using (var db = DbFactory.OpenDbConnection())
             {
-                return db.Query<ToDo>("SELECT (@pageSize) [Project1].[Id] AS [Id], [Project1].[Task] AS [Task], [Project1].[Order] AS [Order], [Project1].[Completed] AS [Completed] FROM [dbo].[ToDos]  AS [Project1] ORDER BY [Project1].[Id] DESC",
+                return db.Query<ToDo>("SELECT Top(@pageSize) [Project1].[Id] AS [Id], [Project1].[Task] AS [Task], [Project1].[Completed] AS [Completed] FROM [dbo].[ToDos]  AS [Project1] ORDER BY [Project1].[Id] DESC",
                 new
                 {
                     pageSize = 10

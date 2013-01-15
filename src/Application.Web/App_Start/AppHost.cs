@@ -1,4 +1,6 @@
 using System.Configuration;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Web.Mvc;
 using Application.BusinessLogic;
 using Application.BusinessLogic.Contracts;
@@ -19,6 +21,7 @@ using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
+using IDbConnectionFactory = ServiceStack.OrmLite.IDbConnectionFactory;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(AppHost), "Start")]
 /**
@@ -53,12 +56,11 @@ namespace Application.Web.App_Start
 
             //Use Elmah with ServiceStack
             LogManager.LogFactory = new ElmahLogFactory(new NullLogFactory());
-			
-            
+
+            RegisterDependencies(container);
+
             //Enable Authentication
 			//ConfigureAuth(container);
-
-		    RegisterDependencies(container);
 
 			//Set MVC to use the same Funq IOC as ServiceStack
 			ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));
@@ -70,19 +72,20 @@ namespace Application.Web.App_Start
             //Make the default lifetime of objects limited to request
             container.DefaultReuse = ReuseScope.Request;
 
-            //---Entity Framework
+            //---Entity Framework (Uncomment to use)
             //database
-//            container.Register<IUnitOfWork>(c => new DataContext.DataContext());
+            //container.Register<IUnitOfWork>(c => new DataContext.DataContext());
             //repositories
             //container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
             //EfConfigure.Initialize();
+            //services
+            //container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
 
+            //--OrmLite
             var appSettings = new AppSettings();
             var connectionString = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
-                ConfigUtils.GetConnectionString("ApplicationDb"));
-            //--OrmLite
+                ConfigUtils.GetConnectionString("DataContext"));
             //database
-            //var connectionString = ConfigurationManager.ConnectionStrings["ApplicationDb"].ConnectionString;
             container.Register<IDbConnectionFactory>(c =>
                 new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance)
                 {
@@ -93,7 +96,7 @@ namespace Application.Web.App_Start
             OrmLiteConfigure.Initialize(container);
 
             //services
-            container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
+            container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoOrmLiteRepository));
 
 	    }
 

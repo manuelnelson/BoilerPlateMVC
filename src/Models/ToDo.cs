@@ -3,6 +3,7 @@ using ServiceStack.DataAnnotations;
 
 namespace Application.Models
 {
+    [Alias("Todos")]
     public class ToDo : IEntity
     {
         [AutoIncrement]

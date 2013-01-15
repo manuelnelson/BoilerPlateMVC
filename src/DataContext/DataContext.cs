@@ -10,8 +10,8 @@ namespace Application.DataContext
 {
     public class DataContext : DbContext, IUnitOfWork
     {
-        public DbSet<ToDo> Todo { get; set; }
-        public DbSet<Test> Test { get; set; }
+        public DbSet<ToDo> Todos { get; set; }
+        public DbSet<Test> Tests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
