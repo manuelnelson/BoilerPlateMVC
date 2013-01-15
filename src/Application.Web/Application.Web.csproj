@@ -164,10 +164,6 @@
     <Compile Include="RestServices\ToDoRestService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ApplicationDb.mdf" />
-    <Content Include="App_Data\ApplicationDb_log.ldf">
-      <DependentUpon>ApplicationDb.mdf</DependentUpon>
-    </Content>
     <Content Include="bundler\bundler.js" />
     <Content Include="bundler\node.exe" />
     <Content Include="bundler\node_modules\clean-css\index.js" />
@@ -353,6 +349,7 @@
     <Content Include="Templates\TodoList.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
     <Folder Include="Views\Account\" />
   </ItemGroup>
