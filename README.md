@@ -8,7 +8,7 @@ A boiler plate solution for an [N-Tiered](http://msdn.microsoft.com/en-us/librar
  + [Elmah](http://code.google.com/p/elmah/) configured for error logging (visit /elmah.axd when application is running)
  + Service-stack's [miniprofiler](http://miniprofiler.com/) enabled for profiling local requests
  + [AngularJS](http://angularjs.org/) is currently configured with loading and error messages wired into all http requests.  Should be fairly simple to swap angular for other MV* javascript libraries (this wasn't my primary motivation for this).  
- + In memory caching configured.  The Todo Rest Service comes with examples of using the cache although the caching is not included with the RestService custom template as how caching is done will always vary by project.
+ + In memory caching configured.  The Todo RestService comes with examples of using the cache although the caching is not included with the RestService custom template as caching implementation will always vary by application.
 
 #Why?
 One of my goals for 2013 is to create and experiment with more side projects. Starting with a visual studio project template leaves a ton of work to add/remove features and nuget packages that can take hours just to setup. I wanted to have a clean boiler plate solution with what I thought were the best .Net tools that also contained good coding practices that I could scale and easily use in a variety of different projects. It'd also be a great opportunity to get other's input to see what other tools and features I'm missing that could be added to the boiler plate solution so that I could learn from others.
