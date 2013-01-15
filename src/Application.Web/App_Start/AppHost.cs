@@ -71,29 +71,25 @@ namespace Application.Web.App_Start
             //Register your repositories
             //Make the default lifetime of objects limited to request
             container.DefaultReuse = ReuseScope.Request;
+            var appSettings = new AppSettings();
+            var connectionString = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
+                ConfigUtils.GetConnectionString("DataContext"));
+
 
             //---Entity Framework (Uncomment to use)
             //database
             //container.Register<IUnitOfWork>(c => new DataContext.DataContext());
             ////repositories
             //container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
-            //EfConfigure.Initialize();
+            //EfConfigure.Initialize(connectionString);
             ////services
             //container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
 
             //--OrmLite
-            var appSettings = new AppSettings();
-            var connectionString = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
-                ConfigUtils.GetConnectionString("DataContext"));
             //database
-            container.Register<IDbConnectionFactory>(c =>
-                new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance)
-                {
-                    ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current)
-                });
             //repositories
             container.Register<IToDoRepository>(c => new ToDoOrmLiteRepository(c.Resolve<IDbConnectionFactory>()));
-            OrmLiteConfigure.Initialize(container);
+            OrmLiteConfigure.Initialize(container, connectionString);
             //services
             container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoOrmLiteRepository));
 
