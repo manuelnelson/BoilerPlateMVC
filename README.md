@@ -33,4 +33,6 @@ Also feel free to contribute and improve the project! Here's what I'm trying to 
   + Add basic CRUD unit/implentation testing to both angularjs and the service stack Rest Services. Make custom templates for these.
   + Create a branch that swaps out ASP.NET's MVC for Service Stack's razor view engine to be run entirely in Mono.
 
-Thanks to [Demis Bellot](https://github.com/mythz) and [Service Stack crew](https://github.com/ServiceStack/ServiceStack#contributors) as this project relies heavily on most of there work!
+View the [Todo application](http://boilerplatemvc.apphb.com/) on [App Harbor](https://appharbor.com)
+
+Thanks to [Demis Bellot](https://github.com/mythz) and [Service Stack crew](https://github.com/ServiceStack/ServiceStack#contributors) as this project relies heavily on most of their work!
