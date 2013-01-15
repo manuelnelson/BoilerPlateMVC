@@ -10,6 +10,8 @@ using Application.DataInterface;
 using Application.Web.App_Start;
 using Application.Web.RestServices;
 using Funq;
+using ServiceStack.CacheAccess;
+using ServiceStack.CacheAccess.Providers;
 using ServiceStack.Configuration;
 using ServiceStack.Logging;
 using ServiceStack.Logging.Elmah;
@@ -19,6 +21,7 @@ using ServiceStack.MiniProfiler.Data;
 using ServiceStack.Mvc;
 using ServiceStack.OrmLite;
 using ServiceStack.OrmLite.SqlServer;
+using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.Auth;
 using ServiceStack.WebHost.Endpoints;
 using IDbConnectionFactory = ServiceStack.OrmLite.IDbConnectionFactory;
@@ -57,8 +60,14 @@ namespace Application.Web.App_Start
             //Use Elmah with ServiceStack
             LogManager.LogFactory = new ElmahLogFactory(new NullLogFactory());
 
-            RegisterDependencies(container);
+            //Make the default lifetime of objects limited to request
+            container.DefaultReuse = ReuseScope.Request;
 
+            //Uncomment to use Entity Framework
+            //RegisterEfServicesAndRepositories(container);
+		    RegisterOrmLiteServicesAndRepositories(container);
+		    RegisterCacheAndStorage(container);
+            
             //Enable Authentication
 			//ConfigureAuth(container);
 
@@ -66,33 +75,31 @@ namespace Application.Web.App_Start
 			ControllerBuilder.Current.SetControllerFactory(new FunqControllerFactory(container));
 		}
 
-	    private void RegisterDependencies(Container container)
+	    private void RegisterOrmLiteServicesAndRepositories(Container container)
 	    {
-            //Register your repositories
-            //Make the default lifetime of objects limited to request
-            container.DefaultReuse = ReuseScope.Request;
-            var appSettings = new AppSettings();
-            var connectionString = appSettings.Get("SQLSERVER_CONNECTION_STRING", //AppHarbor or Local connection string
-                ConfigUtils.GetConnectionString("DataContext"));
-
-
-            //---Entity Framework (Uncomment to use)
-            //database
-            //container.Register<IUnitOfWork>(c => new DataContext.DataContext());
-            ////repositories
-            //container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
-            //EfConfigure.Initialize(connectionString);
-            ////services
-            //container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
-
-            //--OrmLite
-            //database
+            var connectionString = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
             //repositories
             container.Register<IToDoRepository>(c => new ToDoOrmLiteRepository(c.Resolve<IDbConnectionFactory>()));
+            //database
             OrmLiteConfigure.Initialize(container, connectionString);
             //services
             container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoOrmLiteRepository));
+	        
+	    }
 
+	    private void RegisterEfServicesAndRepositories(Container container)
+	    {
+            //Make the default lifetime of objects limited to request
+	        var connectionString = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
+
+            //---Entity Framework (Uncomment to use)
+            //database
+            EfConfigure.Initialize(connectionString);
+            container.Register<IUnitOfWork>(c => new DataContext.DataContext());
+            //repositories
+            container.Register<IToDoRepository>(c => new ToDoRepository(c.Resolve<IUnitOfWork>()));
+            //services
+            container.Register<IToDoService>(c => new ToDoService(c.Resolve<IToDoRepository>() as ToDoRepository));
 	    }
 
 	    /* Uncomment to enable ServiceStack Authentication and CustomUserSession
@@ -124,6 +131,11 @@ namespace Application.Web.App_Start
 			authRepo.CreateMissingTables();
 		}
 		*/
+        private void RegisterCacheAndStorage(Container container)
+        {
+            container.Register<ICacheClient>(c => new MemoryCacheClient()).ReusedWithin(ReuseScope.Container);
+            container.Register<ISessionFactory>(c => new SessionFactory(c.Resolve<ICacheClient>())).ReusedWithin(ReuseScope.Container);
+        }
 
 		public static void Start()
 		{

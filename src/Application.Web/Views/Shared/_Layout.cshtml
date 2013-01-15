@@ -14,8 +14,11 @@
 
     @if (HttpContext.Current.IsDebuggingEnabled)
     {
+        //unfortunately bundler doesn't compile changes made to individual less files located in the bootstrap.less and will only do it when bootstrap.less is changed
+        //This method will look for all changes automatically.  Bundler will still be used for release mode
         <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/bootstrap.less")"/>
-        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/app-specific.less")"/>
+        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/app-specific.less")"/>        
+        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/responsive.less")"/>        
         <script type="text/javascript" src="@Url.Content("~/Scripts/less.js")"></script>
     }
     else
