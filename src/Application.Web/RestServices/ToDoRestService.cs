@@ -58,9 +58,9 @@ namespace Application.Web.RestServices
                 var toDoEntity = request.TranslateTo<ToDo>();
                 ToDoService.Add(toDoEntity);
 
-                //Force cache to update on next call
+                //Manual cache update
                 var cacheKey = UrnId.CreateWithParts<TodoListDto>();
-                CacheClient.Remove(cacheKey);
+                CacheClient.Replace(cacheKey, ToDoService.GetRecent());
                 return toDoEntity;
             }
 
@@ -82,11 +82,10 @@ namespace Application.Web.RestServices
             {                 
                 ToDoService.DeleteAll(request.Ids);
 
-                //update recent
                 var cacheKey = UrnId.CreateWithParts<TodoListDto>();
                 CacheClient.Remove(cacheKey);
 
-                //update all get requests by id
+                //remove all cached get requests by id
                 foreach (var cacheKeyId in request.Ids.Select(id => UrnId.CreateWithParts<TodoDto>(id.ToString())))
                 {
                     CacheClient.Remove(cacheKeyId);
