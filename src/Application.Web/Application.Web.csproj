@@ -317,6 +317,7 @@
     <Content Include="Scripts\application.js.bundle" />
     <Content Include="Content\less\app-specific.less" />
     <None Include="Scripts\jquery-1.8.3.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-1.8.3.js" />
     <Content Include="Scripts\jquery-1.8.3.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />

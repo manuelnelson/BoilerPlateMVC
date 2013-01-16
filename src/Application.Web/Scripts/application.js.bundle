@@ -2,9 +2,7 @@
 jquery.unobtrusive-ajax.js
 jquery.validate.js
 jquery.validate.unobtrusive.js
-angular.js
-angular-resource.js
-angular-ui.js  
+bootstrap-transition.js 
 bootstrap-affix.js  
 bootstrap-alert.js  
 bootstrap-button.js
@@ -15,8 +13,10 @@ bootstrap-modal.js
 bootstrap-scrollspy.js
 bootstrap-tab.js
 bootstrap-tooltip.js 
-bootstrap-transition.js
 bootstrap-typeahead.js
+angular.js 
+angular-resource.js
+angular-ui.js  
 app-specific/app.js
 app-specific/app-services.js
 app-specific/app-controllers.js
