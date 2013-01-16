@@ -58,9 +58,9 @@ namespace Application.Web.RestServices
                 var toDoEntity = request.TranslateTo<ToDo>();
                 ToDoService.Add(toDoEntity);
 
-                //Manual cache update
+                //Remove cache
                 var cacheKey = UrnId.CreateWithParts<TodoListDto>();
-                CacheClient.Replace(cacheKey, ToDoService.GetRecent());
+                RequestContext.RemoveFromCache(CacheClient, cacheKey);
                 return toDoEntity;
             }
 
@@ -68,13 +68,13 @@ namespace Application.Web.RestServices
             {
                 var toDoEntity = request.TranslateTo<ToDo>();
                 ToDoService.Update(toDoEntity);
-                
-                //Replace cache
+
+                //Remove cache
                 var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString());
-                CacheClient.Replace(cacheKey, toDoEntity);
-                //Force update - cache invalidation NOO!!
-                var cacheKeyRecent = UrnId.CreateWithParts<TodoListDto>();
-                CacheClient.Remove(cacheKeyRecent);
+                RequestContext.RemoveFromCache(CacheClient, cacheKey);
+
+                var cacheKeyList = UrnId.CreateWithParts<TodoListDto>();
+                RequestContext.RemoveFromCache(CacheClient, cacheKeyList);
                 return toDoEntity;
             }
 
@@ -82,13 +82,13 @@ namespace Application.Web.RestServices
             {                 
                 ToDoService.DeleteAll(request.Ids);
 
-                var cacheKey = UrnId.CreateWithParts<TodoListDto>();
-                CacheClient.Remove(cacheKey);
+                var cacheKeyList = UrnId.CreateWithParts<TodoListDto>();
+                RequestContext.RemoveFromCache(CacheClient, cacheKeyList);
 
                 //remove all cached get requests by id
                 foreach (var cacheKeyId in request.Ids.Select(id => UrnId.CreateWithParts<TodoDto>(id.ToString())))
                 {
-                    CacheClient.Remove(cacheKeyId);
+                    RequestContext.RemoveFromCache(CacheClient, cacheKeyId);
                 }
             }
 
@@ -97,9 +97,8 @@ namespace Application.Web.RestServices
                 var toDoEntity = request.TranslateTo<ToDo>();
                 ToDoService.Delete(toDoEntity);
 
-                //Force cache to update itself
                 var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString());
-                CacheClient.Remove(cacheKey);
+                RequestContext.RemoveFromCache(CacheClient, cacheKey);
             }
         }
 
