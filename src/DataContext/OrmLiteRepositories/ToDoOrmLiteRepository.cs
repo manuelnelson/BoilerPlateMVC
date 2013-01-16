@@ -16,9 +16,14 @@ namespace Application.DataContext.OrmLiteRepositories
             base.CreateMissingTables();
             using (var db = DbFactory.OpenDbConnection())
             {
-                db.Insert(new ToDo{Task = "Pick up laundry"});
-                db.Insert(new ToDo { Task = "Do the dishes"});
-            }
+                var count = db.Scalar<int>("SELECT count(*) FROM [dbo].[ToDos]");
+                if (count == 0)
+                {
+                    //Seed data
+                    db.Insert(new ToDo { Task = "Pick up laundry" });
+                    db.Insert(new ToDo { Task = "Do the dishes" });
+                }
+            }                          
         }
 
 
