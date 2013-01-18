@@ -29606,7 +29606,6 @@ var TodoApp = angular.module("TodoApp", ["ngResource"], ["$routeProvider",  func
         when('/edit/:todoId', { controller: TodoEditCtrl, templateUrl: '/Templates/TodoEdit.html' }).
         otherwise({ redirectTo: '/' });
 }]); 
-$(".nav-collapse").collapse()
 
 ;//Todoservice
 TodoApp.factory('todoService', ['$resource', function ($resource) {

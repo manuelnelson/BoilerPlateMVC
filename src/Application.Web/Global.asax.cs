@@ -19,7 +19,8 @@ namespace Application.Web
         
         protected void Application_BeginRequest()
         {
-            if (Request.IsLocal)
+            //I disabled this so it profiling is visible on app harbor.  Uncomment to keep profiling local.
+            //if (Request.IsLocal)
                 Profiler.Start();
         }
 
