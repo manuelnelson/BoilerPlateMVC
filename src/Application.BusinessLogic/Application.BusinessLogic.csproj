@@ -64,15 +64,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\DataContext\Application.DataContext.csproj">
+    <ProjectReference Include="..\Application.DataContext\Application.DataContext.csproj">
       <Project>{BA2BF298-ECE5-46A0-A832-5A65B1F47115}</Project>
       <Name>Application.DataContext</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataInterface\Application.DataInterface.csproj">
+    <ProjectReference Include="..\Application.DataInterface\Application.DataInterface.csproj">
       <Project>{B75650C9-310E-4760-896D-1865B0133B9F}</Project>
       <Name>Application.DataInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Models\Application.Models.csproj">
+    <ProjectReference Include="..\Application.Models\Application.Models.csproj">
       <Project>{11CF1AD7-9F29-4845-AB56-43B044A70BBE}</Project>
       <Name>Application.Models</Name>
     </ProjectReference>
