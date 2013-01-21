@@ -6265,6 +6265,10 @@ section {
   -moz-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
 }
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 1px 9px;
+}
 .hero-unit h1,
 .hero-unit h2,
 .hero-unit h3,
