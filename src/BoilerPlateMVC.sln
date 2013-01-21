@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Web", "Applicat
 		{B75650C9-310E-4760-896D-1865B0133B9F} = {B75650C9-310E-4760-896D-1865B0133B9F}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Web.Tests\Application.Tests.csproj", "{2BD000FE-3531-4B4A-82CA-678E2E3E7DC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{2BD000FE-3531-4B4A-82CA-678E2E3E7DC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{C9A97DCB-2273-4CD3-8B86-EFE00F8E470C}"
 EndProject
@@ -32,8 +32,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Models", "Application.Models\Application.Models.csproj", "{11CF1AD7-9F29-4845-AB56-43B044A70BBE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0E62E300-0417-4EE2-8298-4BCBEB8512B1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.BusinessLogic.Tests", "Application.BusinessLogic.Tests\Application.BusinessLogic.Tests.csproj", "{DF44BC97-7261-48B0-900A-1D84E987C02A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,17 +63,12 @@ Global
 		{11CF1AD7-9F29-4845-AB56-43B044A70BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11CF1AD7-9F29-4845-AB56-43B044A70BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11CF1AD7-9F29-4845-AB56-43B044A70BBE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF44BC97-7261-48B0-900A-1D84E987C02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF44BC97-7261-48B0-900A-1D84E987C02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF44BC97-7261-48B0-900A-1D84E987C02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF44BC97-7261-48B0-900A-1D84E987C02A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2BD000FE-3531-4B4A-82CA-678E2E3E7DC3} = {0E62E300-0417-4EE2-8298-4BCBEB8512B1}
-		{DF44BC97-7261-48B0-900A-1D84E987C02A} = {0E62E300-0417-4EE2-8298-4BCBEB8512B1}
 		{231B4866-AE90-46D5-A17A-EFC16B2EEF87} = {C9A97DCB-2273-4CD3-8B86-EFE00F8E470C}
 		{B75650C9-310E-4760-896D-1865B0133B9F} = {68C4C38B-9C00-4883-A108-5EA0110DD585}
 		{BA2BF298-ECE5-46A0-A832-5A65B1F47115} = {68C4C38B-9C00-4883-A108-5EA0110DD585}
