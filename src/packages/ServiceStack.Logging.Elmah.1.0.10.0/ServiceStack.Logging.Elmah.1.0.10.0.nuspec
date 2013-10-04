@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>ServiceStack.Logging.Elmah</id>
+    <version>1.0.10.0</version>
+    <title>ServiceStack.Logging.Elmah</title>
+    <authors>Demis Bellot</authors>
+    <owners>Demis Bellot</owners>
+    <licenseUrl>https://github.com/ServiceStack/ServiceStack/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ServiceStack/ServiceStack.Logging</projectUrl>
+    <iconUrl>http://www.servicestack.net/logo-100x100.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides Elmah logging integration for other ServiceStack projects
+        Includes: 
+            - ServiceStack.Logging.Elmah.dll
+        Dependencies:
+            - ServiceStack.Interfaces.dll</description>
+    <summary>Elmah logging integration for ServiceStack, the Opensource .NET and Mono REST Web Services Framework</summary>
+    <copyright>servicestack.net 2012 and contributors</copyright>
+    <language>en-US</language>
+    <tags>servicestack log logging elmah</tags>
+    <dependencies>
+      <dependency id="elmah.corelibrary" />
+      <dependency id="ServiceStack.Common" />
+    </dependencies>
+  </metadata>
+</package>
