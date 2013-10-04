@@ -5,11 +5,19 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Application.DataInterface;
+using Application.Models.Contract;
 
 namespace Application.DataContext.Repositories
 {
-    public class Repository<TEntity> : IRepository<TEntity>, IEfRepository where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
     {
+        public IUnitOfWork UnitOfWork { get; set; }
+
+        public string ConnectionString
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
 
         protected DataContext DataContext
         {
@@ -36,9 +44,11 @@ namespace Application.DataContext.Repositories
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="entityState"></param>
-        protected virtual void SetEntityState(object entity, EntityState entityState)
+        protected virtual void SetEntityState(TEntity entity, EntityState entityState)
         {
-            DataContext.Entry(entity).State = entityState;
+            //DataContext.Entry(entity).State = entityState;
+            var v = GetDbSet().Find(entity.Id);// model.ReportDate
+            DataContext.Entry(v).CurrentValues.SetValues(entity);
         }
 
         /// <summary>
@@ -46,7 +56,7 @@ namespace Application.DataContext.Repositories
         /// </summary>
         /// <param name="item"></param>
         public virtual void Add(TEntity item)
-        {            
+        {
             GetDbSet().Add(item);
             UnitOfWork.Commit();
         }
@@ -75,6 +85,14 @@ namespace Application.DataContext.Repositories
             UnitOfWork.Commit();
         }
 
+        public void Remove(long id)
+        {
+            var item = GetDbSet().Find(id);
+            //set as "removed"
+            GetDbSet().Remove(item);
+            UnitOfWork.Commit();
+        }
+
         public void RemoveAll(IEnumerable<TEntity> items)
         {
             var dbSet = GetDbSet();
@@ -97,7 +115,6 @@ namespace Application.DataContext.Repositories
             UnitOfWork.Commit();
         }
 
-
         /// <summary>
         /// Retrieves an entity by id
         /// </summary>
@@ -106,6 +123,12 @@ namespace Application.DataContext.Repositories
         public virtual TEntity Get(long id)
         {
             return GetDbSet().Find(id);
+        }
+
+
+        public IEnumerable<TEntity> Get(IEnumerable<long> ids)
+        {
+            return GetDbSet().Where(x => ids.Contains(x.Id));
         }
 
 
@@ -164,7 +187,5 @@ namespace Application.DataContext.Repositories
             if (UnitOfWork != null)
                 UnitOfWork.Dispose();
         }
-
-        public IUnitOfWork UnitOfWork { get; private set; }
     }
 }

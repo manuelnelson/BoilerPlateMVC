@@ -26,6 +26,12 @@ namespace Application.DataInterface
         void Remove(TEntity item);
 
         /// <summary>
+        /// Delete item By Id
+        /// </summary>
+        /// <param name="id"></param>
+        void Remove(long id);
+
+        /// <summary>
         /// Delete all items
         /// </summary>
         /// <param name="items"></param>
@@ -43,6 +49,13 @@ namespace Application.DataInterface
         /// <param name="id">Entity key value</param>
         /// <returns></returns>
         TEntity Get(long id);
+
+        /// <summary>
+        /// Get element by entity key
+        /// </summary>
+        /// <param name="ids">Entity key value</param>
+        /// <returns></returns>
+        IEnumerable<TEntity> Get(IEnumerable<long> ids);
 
         /// <summary>
         /// Updates the entity in the context

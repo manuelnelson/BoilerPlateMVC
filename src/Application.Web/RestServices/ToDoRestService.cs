@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using Application.BusinessLogic.Contracts;
 using Application.Models;
 using ServiceStack.CacheAccess;
@@ -14,26 +13,19 @@ namespace Application.Web.RestServices
     {
         //REST Resource DTO
         [Route("/todos")]
-        [Route("/todos/{Ids}")]
-        public class TodoListDto : IReturn<List<TodoDto>>
-        {
-            public long[] Ids { get; set; }
-            public TodoListDto(params long[] ids)
-            {
-                Ids = ids;
-            }
-        }
-
-        [Route("/todos", "POST")]
-        [Route("/todos/{Id}", "PUT")]
         [Route("/todos/{Id}", "GET")]
+        [Route("/todos/{Id}", "PUT")]
+        [Route("/todos", "GET")]
+        [Route("/todos", "PUT")]
+        [Route("/todos", "POST")]
+        [Route("/todos", "DELETE")]
         public class TodoDto : IReturn<TodoDto>
         {
             public long Id { get; set; }
+            public long[] Ids { get; set; }
             public string Task { get; set; }
             public bool Completed { get; set; }
         }
-
         //Caching things I probably wouldn't but doing it as an example
         public class TodosService : Service
         {
@@ -42,15 +34,16 @@ namespace Application.Web.RestServices
             public ICacheClient CacheClient { get; set; }
             public object Get(TodoDto request)
             {
-                var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString());
-                var expireInTimespan = new TimeSpan(0, 0, 30);//cache for 30 seconds
-                return RequestContext.ToOptimizedResultUsingCache(CacheClient, cacheKey, expireInTimespan, () => ToDoService.Get(request.Id));                
-            }
-            public object Get(TodoListDto request)
-            {
-                var cacheKey = UrnId.CreateWithParts<TodoListDto>();
-                var expireInTimespan = new TimeSpan(0, 0, 30);//cache for 30 seconds
-                return RequestContext.ToOptimizedResultUsingCache(CacheClient, cacheKey, expireInTimespan, () => ToDoService.GetRecent());                
+                if (request.Ids != null && request.Ids.Length > 0)
+                    return ToDoService.Get(request.Ids);
+                //store in cache
+                if (request.Id > 0)
+                {
+                    var expireInTimespan = new TimeSpan(0, 0, 30);//cache for 30 seconds
+                    var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString(CultureInfo.InvariantCulture));
+                    return RequestContext.ToOptimizedResultUsingCache(CacheClient, cacheKey, expireInTimespan, () => ToDoService.Get(request.Id));
+                }
+                return ToDoService.GetRecent();
             }
 
             public object Post(TodoDto request)
@@ -59,7 +52,7 @@ namespace Application.Web.RestServices
                 ToDoService.Add(toDoEntity);
 
                 //Remove cache
-                var cacheKey = UrnId.CreateWithParts<TodoListDto>();
+                var cacheKey = UrnId.CreateWithParts<ToDo>();
                 RequestContext.RemoveFromCache(CacheClient, cacheKey);
                 return toDoEntity;
             }
@@ -70,35 +63,22 @@ namespace Application.Web.RestServices
                 ToDoService.Update(toDoEntity);
 
                 //Remove cache
-                var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString());
+                var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString(CultureInfo.InvariantCulture));
                 RequestContext.RemoveFromCache(CacheClient, cacheKey);
-
-                var cacheKeyList = UrnId.CreateWithParts<TodoListDto>();
-                RequestContext.RemoveFromCache(CacheClient, cacheKeyList);
                 return toDoEntity;
-            }
-
-            public void Delete(TodoListDto request)
-            {                 
-                ToDoService.DeleteAll(request.Ids);
-
-                var cacheKeyList = UrnId.CreateWithParts<TodoListDto>();
-                RequestContext.RemoveFromCache(CacheClient, cacheKeyList);
-
-                //remove all cached get requests by id
-                foreach (var cacheKeyId in request.Ids.Select(id => UrnId.CreateWithParts<TodoDto>(id.ToString())))
-                {
-                    RequestContext.RemoveFromCache(CacheClient, cacheKeyId);
-                }
             }
 
             public void Delete(TodoDto request)
             {
-                var toDoEntity = request.TranslateTo<ToDo>();
-                ToDoService.Delete(toDoEntity);
+                if (request.Ids != null && request.Ids.Length > 0)
+                    ToDoService.DeleteAll(request.Ids);
+                else
+                {
+                    var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString());
+                    RequestContext.RemoveFromCache(CacheClient, cacheKey);
+                    ToDoService.Delete(request.Id);
+                }
 
-                var cacheKey = UrnId.CreateWithParts<TodoDto>(request.Id.ToString());
-                RequestContext.RemoveFromCache(CacheClient, cacheKey);
             }
         }
 

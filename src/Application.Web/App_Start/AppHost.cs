@@ -90,7 +90,12 @@ namespace Application.Web.App_Start
 	    private void RegisterEfServicesAndRepositories(Container container)
 	    {
             //Make the default lifetime of objects limited to request
-	        var connectionString = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["DataContext"].ConnectionString;
+            container.Register<IDbConnectionFactory>(c =>
+                new OrmLiteConnectionFactory(connectionString, SqlServerOrmLiteDialectProvider.Instance)
+                {
+                    ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current)
+                });
 
             //---Entity Framework (Uncomment to use)
             //database

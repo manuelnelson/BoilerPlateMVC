@@ -1,3 +1,5 @@
+@import "variables.less";
+@import "mixins.less";
 // Media objects
 // Source: http://stubbornella.org/content/?p=497
 // --------------------------------------------------
@@ -10,7 +12,6 @@
 .media,
 .media-body {
   overflow: hidden;
-  *overflow: visible;
   zoom: 1;
 }
 
@@ -37,11 +38,13 @@
 // Media image alignment
 // -------------------------
 
-.media .pull-left {
-  margin-right: 10px;
-}
-.media .pull-right {
-  margin-left: 10px;
+.media {
+  > .pull-left {
+    margin-right: 10px;
+  }
+  > .pull-right {
+    margin-left: 10px;
+  }
 }
 
 
@@ -50,6 +53,6 @@
 
 // Undo default ul/ol styles
 .media-list {
-  margin-left: 0;
+  padding-left: 0;
   list-style: none;
 }

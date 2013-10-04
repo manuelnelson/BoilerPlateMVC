@@ -18,8 +18,8 @@ namespace Application.Web.App_Start
                     ConnectionFilter = x => new ProfiledDbConnection(x, Profiler.Current)
                 });
 
-            var todoRepo = (ToDoOrmLiteRepository)container.Resolve<IToDoRepository>();
-            todoRepo.CreateMissingTables();
+            //var todoRepo = (ToDoOrmLiteRepository)container.Resolve<IToDoRepository>();
+            //todoRepo.CreateMissingTables();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Application.BusinessLogic.Contracts
 {
     public interface IService<TRepository, TEntity> : IDisposable
         where TRepository : IRepository<TEntity>
-        where TEntity : class, IEntity 
+        where TEntity : class, IEntity
     {
         /// <summary>
         /// Add the entity to the database.
@@ -31,6 +31,13 @@ namespace Application.BusinessLogic.Contracts
 
         /// <summary>
         /// Gets the entity from the database
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        IEnumerable<TEntity> Get(IEnumerable<long> ids);
+
+        /// <summary>
+        /// Gets the entity from the database
         /// </summary>        
         /// <param name="whereExpression">Where expression</param>
         /// <returns></returns>
@@ -49,6 +56,13 @@ namespace Application.BusinessLogic.Contracts
         /// <param name="item"></param>
         /// <returns></returns>
         void Delete(TEntity item);
+
+        /// <summary>
+        /// Deletes the entity by Id from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        void Delete(long id);
 
         /// <summary>
         /// Deletes a list of entites from the database

@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="col-md-8">
+        <form id="todoForm" name="todoForm" novalidate class="form-inline">
+            <div class="form-group">
+                <input type="text" required class="form-control" ng-model="todo.Task" name="Task" size="30" placeholder="Add new todo" required>
+                <div ng-show="todoForm.Task.$dirty && todoForm.Task.$invalid">
+                    <span class="form-error" ng-show="todoForm.Task.$error.required">Task text is required</span>
+                </div>
+            </div>
+            <button class="btn btn-primary" ng-click="addTodo()"><i class="glyphicon glyphicon-plus"></i>Add</button>
+        </form>
+    </div>
+</div>
+<div class="row" style="margin-top: 15px">
+    <div class="col-md-4">
+        <ul class="list-unstyled list-striped">
+            <li ng-repeat="todo in todos">
+                <span class="checkbox-inline done-{{todo.Completed}}">
+                    <input class="checkbox-inline" type="checkbox" ng-model="todo.Completed" />{{todo.Task}}
+                </span>
+                <a class="btn-sm btn btn-primary pull-right" href="#/edit/{{todo.Id}}"><i class="glyphicon glyphicon-edit"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<button class="btn-primary btn" ng-click="archive()">Archive Completed</button>

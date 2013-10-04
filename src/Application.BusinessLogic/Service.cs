@@ -51,12 +51,25 @@ namespace Application.BusinessLogic
         {
             try
             {
-                return Repository.Get(id);                
+                return Repository.Get(id);
             }
             catch (Exception ex)
             {
                 ErrorSignal.FromCurrentContext().Raise(ex);
                 throw new HttpError(HttpStatusCode.InternalServerError, "Unable to retrieve item");
+            }
+        }
+
+        public IEnumerable<TEntity> Get(IEnumerable<long> ids)
+        {
+            try
+            {
+                return Repository.Get(ids);
+            }
+            catch (Exception ex)
+            {
+                ErrorSignal.FromCurrentContext().Raise(ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to retrieve items");
             }
         }
 
@@ -99,6 +112,19 @@ namespace Application.BusinessLogic
             }
         }
 
+        public void Delete(long id)
+        {
+            try
+            {
+                Repository.Remove(id);
+            }
+            catch (Exception ex)
+            {
+                ErrorSignal.FromCurrentContext().Raise(ex);
+                throw new HttpError(HttpStatusCode.InternalServerError, "Unable to remove item");
+            }
+        }
+
         public void DeleteAll(IEnumerable<TEntity> items)
         {
             try
@@ -125,13 +151,8 @@ namespace Application.BusinessLogic
             }
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        /// <filterpriority>2</filterpriority>
         public void Dispose()
         {
-
         }
     }
 }

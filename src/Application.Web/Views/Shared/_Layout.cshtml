@@ -11,64 +11,74 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    @if (HttpContext.Current.IsDebuggingEnabled)
-    {
-        //unfortunately bundler doesn't compile changes made to individual less files located in the bootstrap.less and will only do it when bootstrap.less is changed
-        //This method will look for all changes automatically.  Bundler will still be used for release mode
-        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/bootstrap.less")"/>
-        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/app-specific.less")"/>        
-        <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/less/responsive.less")"/>        
-        <script type="text/javascript" src="@Url.Content("~/Scripts/less.js")"></script>
-    }
-    else
-    {
-        @Html.RenderCssBundle("~/Content/application.css.bundle", BundleOptions.MinifiedAndCombined)
-    }
+    @(HttpContext.Current.IsDebuggingEnabled ? Html.RenderCssBundle("~/Content/application.css.bundle", BundleOptions.Normal) : Html.RenderCssBundle("~/Content/application.css.bundle", BundleOptions.MinifiedAndCombined))
     @RenderSection("Styles", required: false)
 </head>
-<body class="preview" data-spy="scroll" data-target=".subnav" data-offset="80">
-    <header>
-        <!-- Navbar
-    ================================================== -->
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" href="#" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="../">Boilerplate</a>
-                    <div class="nav-collapse" id="main-menu">
-                        <ul class="nav" id="main-menu-left">
-                            <li><a href="http://manuelnelson.github.com/BoilerPlateMVC">View on Github</a></li>
-                            <li class="dropdown" id="preview-menu">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Dropdown<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a target="_blank" href="#">Doesn't</a></li>
-                                    <li><a target="_blank" href="#">Do</a></li>
-                                    <li class="divider"></li>
-                                    <li><a target="_blank" href="#">Anything</a></li>
-                                </ul>
-                            </li>
+<body>
+    <!-- Navbar
+        ================================================== -->
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="http://manuelnelson.github.com/BoilerPlateMVC" class="navbar-brand">Boilerplate</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://manuelnelson.github.com/BoilerPlateMVC">View on Github</a>
+                    </li>
+                    <li>
+                        <a href="http://emmanuelnelson.com/">About</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle">Download <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" target="_blank" href="#">An</a></li>
+                            <li><a tabindex="-1" target="_blank" href="#">Angular</a></li>
+                            <li class="divider"></li>
+                            <li><a tabindex="-1" target="_blank" href="#">Dropdown! (No Jquery)</a></li>
                         </ul>
-                    </div>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>
+                    <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="page-header" id="banner">
+            <div class="row" style="margin-top:20px">
+                <div class="col-lg-6">
+                    <h1>To Do</h1>
+                    <p class="lead">An example.</p>
+                </div>
+                <div class="col-lg-6">
                 </div>
             </div>
         </div>
-    </header>
-    <div class="container">
+        <div id="main-content">
+            <div ng-controller="MessageCtrl" ng-show="showMessage" class="row">
+                <div class="col-lg-12">
+                    <div class="alert {{AlertType}}">
+                        <a ng-click="close();" class="close">×</a>
+                        <strong>{{Title}}</strong> {{Message}}
+                    </div>
+                </div>
+            </div>
+            <div ng-view></div>
+        </div>
         @RenderBody()
-        <br>
-        <br>
-        <br>
-        <hr>
         <footer id="footer">
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            Made by <a target="_blank" href="http://emmanuelnelson.com">Emmanuel Nelson</a>. <a href="mailto:info@emmanuelnelson.com">Contact him </a>.<br>
-                                                                                                                                                       Theme modified from <a target="_blank" href="http://bootswatch.com/readable">bootswatch theme</a> from <a href="http://thomaspark.me/" target="_blank">Thomas Park</a><br/>
-                                                                                                                                                       Based on <a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap</a>. Hosted on <a target="_blank" href="http://pages.github.com/">GitHub</a>. Icons from <a target="_blank" href="http://glyphicons.com/">Glyphicons</a>. Web fonts from <a target="_blank" href="http://www.google.com/webfonts">Google</a>.<p></p>
+            Made by <a target="_blank" href="http://emmanuelnelson.com">Emmanuel Nelson</a>. <a href="mailto:info@emmanuelnelson.com">Contact him</a>.<br>
+            Theme modified from <a target="_blank" href="http://bootswatch.com/readable">bootswatch theme</a> from <a href="http://thomaspark.me/" target="_blank">Thomas Park</a><br />
+            Based on <a target="_blank" href="http://twitter.github.com/bootstrap/">Bootstrap</a>. Hosted on <a target="_blank" href="http://pages.github.com/">GitHub</a>. Icons from <a target="_blank" href="http://glyphicons.com/">Glyphicons</a>. Web fonts from <a target="_blank" href="http://www.google.com/webfonts">Google</a>.<p></p>
         </footer>
     </div>
     <div ng-controller="LoadingCtrl" id="loading" ng-show="loading"><span>{{message}}</span></div>

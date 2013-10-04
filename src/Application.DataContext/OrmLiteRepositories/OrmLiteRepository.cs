@@ -8,7 +8,7 @@ using ServiceStack.OrmLite;
 
 namespace Application.DataContext.OrmLiteRepositories
 {
-    public class OrmLiteRepository<TEntity> : IRepository<TEntity>, IOrmLiteRepository where TEntity:class,new() 
+    public class OrmLiteRepository<TEntity> : IRepository<TEntity>, IOrmLiteRepository where TEntity : class, IEntity, new()
     {
         public string ConnectionString { get; set; }
 
@@ -17,14 +17,14 @@ namespace Application.DataContext.OrmLiteRepositories
         /// </summary>
         public virtual void CreateMissingTables()
         {
-            DbFactory.Run(db => db.CreateTable<TEntity>(overwrite:false));
+            DbFactory.Run(db => db.CreateTable<TEntity>(overwrite: false));
         }
 
         protected IDbConnectionFactory DbFactory { get; set; }
         public OrmLiteRepository(IDbConnectionFactory dbFactory)
         {
             DbFactory = dbFactory;
-        }  
+        }
         /// <summary>
         /// Add item to dbset
         /// </summary>
@@ -36,23 +36,23 @@ namespace Application.DataContext.OrmLiteRepositories
                 db.Insert(item);
                 //OrmLite does not automagically update the item with the latest id inserted as Entity Framework does
                 //Do this here, but make sure entity has an Id field
-                if(item.GetType().GetMember("Id").Length > 0)
+                if (item.GetType().GetMember("Id").Length > 0)
                     ((IEntity)item).Id = (int)db.GetLastInsertId();
-            }          
+            }
         }
 
         public void AddAll(IEnumerable<TEntity> items)
         {
             using (var db = DbFactory.OpenDbConnection())
             {
-                using(var dbTransaction = db.OpenTransaction())
+                using (var dbTransaction = db.OpenTransaction())
                 {
                     foreach (var item in items)
                     {
                         db.Insert(item);
                     }
                     dbTransaction.Commit();
-                }                
+                }
             }
         }
 
@@ -65,7 +65,16 @@ namespace Application.DataContext.OrmLiteRepositories
             using (var db = DbFactory.OpenDbConnection())
             {
                 db.Delete(item);
-            }          
+            }
+        }
+
+        public void Remove(long id)
+        {
+            using (var db = DbFactory.OpenDbConnection())
+            {
+                var item = db.GetById<TEntity>(id);
+                db.Delete(item);
+            }
         }
 
         public void RemoveAll(IEnumerable<TEntity> items)
@@ -93,7 +102,7 @@ namespace Application.DataContext.OrmLiteRepositories
             using (var db = DbFactory.OpenDbConnection())
             {
                 db.DeleteById<TEntity>(id);
-            }                      
+            }
         }
 
         /// <summary>
@@ -104,9 +113,17 @@ namespace Application.DataContext.OrmLiteRepositories
         public virtual TEntity Get(long id)
         {
             using (var db = DbFactory.OpenDbConnection())
-            {                
-               return db.GetById<TEntity>(id);
-            }              
+            {
+                return db.GetById<TEntity>(id);
+            }
+        }
+
+        public IEnumerable<TEntity> Get(IEnumerable<long> ids)
+        {
+            using (var db = DbFactory.OpenDbConnection())
+            {
+                return db.GetByIds<TEntity>(ids);
+            }
         }
 
         /// <summary>
@@ -118,7 +135,7 @@ namespace Application.DataContext.OrmLiteRepositories
             using (var db = DbFactory.OpenDbConnection())
             {
                 db.Update(item);
-            }                          
+            }
         }
 
 

@@ -1,0 +1,13 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <form name="todoForm" id="todoForm" class="form-inline" novalidate>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="todo.Task" name="Task" size="30" required value="{{todo.Task}}">
+                <div ng-show="todoForm.Task.$dirty && todoForm.Task.$invalid">
+                    <span ng-show='todoForm.Task.$error.required'>Task text is required</span>
+                </div>
+            </div>
+            <button class="btn btn-primary" ng-click="update()">Update</button>
+        </form>
+    </div>
+</div>
