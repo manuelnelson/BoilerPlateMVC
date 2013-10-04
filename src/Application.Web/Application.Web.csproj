@@ -404,7 +404,6 @@
     <Content Include="bundler\node_modules\node-sass\rebuild.js" />
     <Content Include="bundler\node_modules\node-sass\sass.js" />
     <Content Include="bundler\node_modules\node-sass\test.js" />
-    <Content Include="bundler\node_modules\sass\lib\sass.js" />
     <Content Include="bundler\node_modules\step\lib\step.js" />
     <Content Include="bundler\node_modules\stylus\bm.js" />
     <Content Include="bundler\node_modules\stylus\index.js" />
@@ -730,7 +729,6 @@
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="bundler\node_modules\sass\package.json" />
     <Content Include="README.txt" />
     <Content Include="App\filters.js" />
     <Content Include="App\main.js" />
@@ -1008,6 +1006,92 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <Content Include="bundler\uglifyjs" />
+    <Content Include="bundler\node_modules\stylus\Readme.md" />
+    <Content Include="bundler\node_modules\stylus\package.json" />
+    <Content Include="bundler\node_modules\stylus\node_modules\mkdirp\readme.markdown" />
+    <Content Include="bundler\node_modules\stylus\node_modules\mkdirp\package.json" />
+    <Content Include="bundler\node_modules\stylus\node_modules\mkdirp\LICENSE" />
+    <Content Include="bundler\node_modules\stylus\node_modules\cssom\README.mdown" />
+    <Content Include="bundler\node_modules\stylus\node_modules\cssom\package.json" />
+    <Content Include="bundler\node_modules\stylus\LICENSE" />
+    <Content Include="bundler\node_modules\stylus\lib\functions\index.styl" />
+    <Content Include="bundler\node_modules\stylus\bin\stylus" />
+    <Content Include="bundler\node_modules\step\package.json" />
+    <Content Include="bundler\node_modules\node-sass\README.md" />
+    <Content Include="bundler\node_modules\node-sass\precompiled\win32-x64\binding.node" />
+    <Content Include="bundler\node_modules\node-sass\precompiled\win32-ia32\binding.node" />
+    <Content Include="bundler\node_modules\node-sass\precompiled\sunos-x64\binding.node" />
+    <Content Include="bundler\node_modules\node-sass\precompiled\linux-x64\binding.node" />
+    <Content Include="bundler\node_modules\node-sass\precompiled\linux-ia32\binding.node" />
+    <Content Include="bundler\node_modules\node-sass\precompiled\linux-arm\binding.node" />
+    <Content Include="bundler\node_modules\node-sass\precompiled\darwin-x64\binding.node" />
+    <Content Include="bundler\node_modules\node-sass\package.json" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\readme.markdown" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\package.json" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\node_modules\wordwrap\README.markdown" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\node_modules\wordwrap\package.json" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\LICENSE" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\mkdirp\readme.markdown" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\mkdirp\package.json" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\mkdirp\LICENSE" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\colors\ReadMe.md" />
+    <Content Include="bundler\node_modules\node-sass\node_modules\colors\package.json" />
+    <Content Include="bundler\node_modules\node-sass\CONTRIBUTING.md" />
+    <Content Include="bundler\node_modules\node-sass\bin\node-sass" />
+    <Content Include="bundler\node_modules\nib\Readme.md" />
+    <Content Include="bundler\node_modules\nib\package.json" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\Readme.md" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\package.json" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\mkdirp\readme.markdown" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\mkdirp\package.json" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\mkdirp\LICENSE" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\cssom\README.mdown" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\cssom\package.json" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\LICENSE" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\lib\functions\index.styl" />
+    <Content Include="bundler\node_modules\nib\node_modules\stylus\bin\stylus" />
+    <Content Include="bundler\node_modules\nib\lib\nib\vendor.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\text\replace-text.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\text\index.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\text\hide-text.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\text\ellipsis.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\text\aliases.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\size.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\reset.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\positions.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\overflow.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\index.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\image.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\iconic.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\gradients.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\flex.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\config.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\color-image.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\clearfix.styl" />
+    <Content Include="bundler\node_modules\nib\lib\nib\border.styl" />
+    <Content Include="bundler\node_modules\nib\index.styl" />
+    <Content Include="bundler\node_modules\nib\iconic\iconic_stroke.ttf" />
+    <Content Include="bundler\node_modules\nib\iconic\iconic_stroke.otf" />
+    <Content Include="bundler\node_modules\nib\iconic\iconic_stroke.eot" />
+    <Content Include="bundler\node_modules\nib\History.md" />
+    <Content Include="bundler\node_modules\LiveScript\package.json" />
+    <Content Include="bundler\node_modules\LiveScript\bin\slake" />
+    <Content Include="bundler\node_modules\LiveScript\bin\lsc" />
+    <Content Include="bundler\node_modules\LiveScript\bin\livescript" />
+    <Content Include="bundler\node_modules\less\package.json" />
+    <Content Include="bundler\node_modules\less\bin\lessc" />
+    <Content Include="bundler\node_modules\debug\Readme.md" />
+    <Content Include="bundler\node_modules\debug\package.json" />
+    <Content Include="bundler\node_modules\debug\History.md" />
+    <Content Include="bundler\node_modules\debug\component.json" />
+    <Content Include="bundler\node_modules\coffee-script\package.json" />
+    <Content Include="bundler\node_modules\coffee-script\bin\coffee" />
+    <Content Include="bundler\node_modules\coffee-script\bin\cake" />
+    <Content Include="bundler\node_modules\clean-css\bin\cleancss" />
+    <Content Include="bundler\LICENSE" />
+    <Content Include="bundler\coffee.cmd" />
+    <Content Include="bundler\bundler.cmd" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
@@ -1102,264 +1186,6 @@
     <Content Include="Content\less\utilities.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Content\less\wells.less" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\uglifyjs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\Readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\node_modules\mkdirp\readme.markdown" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\node_modules\mkdirp\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\node_modules\mkdirp\LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\node_modules\cssom\README.mdown" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\node_modules\cssom\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\lib\functions\index.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\stylus\bin\stylus" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\step\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\precompiled\win32-x64\binding.node" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\precompiled\win32-ia32\binding.node" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\precompiled\sunos-x64\binding.node" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\precompiled\linux-x64\binding.node" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\precompiled\linux-ia32\binding.node" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\precompiled\linux-arm\binding.node" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\precompiled\darwin-x64\binding.node" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\readme.markdown" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\node_modules\wordwrap\README.markdown" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\node_modules\wordwrap\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\optimist\LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\mkdirp\readme.markdown" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\mkdirp\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\mkdirp\LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\colors\ReadMe.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\node_modules\colors\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\CONTRIBUTING.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\node-sass\bin\node-sass" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\Readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\Readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\mkdirp\readme.markdown" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\mkdirp\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\mkdirp\LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\cssom\README.mdown" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\node_modules\cssom\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\lib\functions\index.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\node_modules\stylus\bin\stylus" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\vendor.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\text\replace-text.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\text\index.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\text\hide-text.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\text\ellipsis.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\text\aliases.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\size.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\reset.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\positions.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\overflow.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\index.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\image.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\iconic.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\gradients.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\flex.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\config.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\color-image.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\clearfix.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\lib\nib\border.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\index.styl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\iconic\iconic_stroke.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\iconic\iconic_stroke.otf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\iconic\iconic_stroke.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\nib\History.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\LiveScript\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\LiveScript\bin\slake" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\LiveScript\bin\lsc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\LiveScript\bin\livescript" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\less\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\less\bin\lessc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\debug\Readme.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\debug\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\debug\History.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\debug\component.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\coffee-script\package.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\coffee-script\bin\coffee" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\coffee-script\bin\cake" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\node_modules\clean-css\bin\cleancss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\coffee.cmd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="bundler\bundler.cmd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\less\bootswatch.less" />
