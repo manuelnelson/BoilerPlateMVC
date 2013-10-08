@@ -64,8 +64,8 @@ namespace Application.Web.App_Start
             container.DefaultReuse = ReuseScope.Request;
 
             //Uncomment to use Entity Framework
-            //RegisterEfServicesAndRepositories(container);
-		    RegisterOrmLiteServicesAndRepositories(container);
+            RegisterEfServicesAndRepositories(container);
+		    //RegisterOrmLiteServicesAndRepositories(container);
 		    RegisterCacheAndStorage(container);
             
             //Enable Authentication

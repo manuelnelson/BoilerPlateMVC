@@ -181,6 +181,10 @@
     <Content Include="App\Todo\Edit\Edit-controller.js" />
     <Content Include="App\Todo\List\list-controller.js" />
     <Content Include="App\Todo\List\List.html" />
+    <Content Include="App_Data\DataContext.mdf" />
+    <Content Include="App_Data\DataContext_log.ldf">
+      <DependentUpon>DataContext.mdf</DependentUpon>
+    </Content>
     <Content Include="bundler\bundler.js" />
     <Content Include="bundler\node.exe" />
     <Content Include="bundler\node_modules\clean-css\index.js" />
@@ -1120,7 +1124,6 @@
     <Content Include="Scripts\jquery-2.0.3.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
     <Folder Include="Helper\" />
     <Folder Include="Views\Account\" />
