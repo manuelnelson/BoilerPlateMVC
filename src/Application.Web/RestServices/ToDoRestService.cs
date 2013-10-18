@@ -6,6 +6,7 @@ using ServiceStack.CacheAccess;
 using ServiceStack.Common;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
+using ServiceStack.ServiceInterface.Cors;
 
 namespace Application.Web.RestServices
 {
@@ -27,6 +28,7 @@ namespace Application.Web.RestServices
             public bool Completed { get; set; }
         }
         //Caching things I probably wouldn't but doing it as an example
+        [EnableCors]
         public class TodosService : Service
         {
             //Injected by IOC
